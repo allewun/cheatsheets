@@ -39,12 +39,8 @@ body {
 }
 
 @mixin inset {
-  box-shadow: 0 2px 0 #fbfbfb,
-              inset 0 0 6px rgba(0,0,0,.15);
-}
-
-@mixin shadow {
-  box-shadow: 0 0 5px rgba(0,0,0,.1);
+  box-shadow: 0 2px 0 #f8f8f8,
+              inset 0 0 4px rgba(0,0,0,.15);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -84,11 +80,11 @@ h3 {
 section {
   &:after { @include clearfix; }
 
-  @include shadow;
+  @include inset;
 
   margin: 100px auto;
   background: #fff;
-  border: 1px solid #c0c0c0;
+  border: 1px solid #91a0c0;
   border-left: none;
   border-right: none;
   border-radius: 3px;
@@ -98,17 +94,14 @@ section {
 
 
 code {
-
   @include inset;
 
   display: block;
   font-family: Consolas;
   border: 1px solid #d0d0d0;
-  padding: 8px 8px 8px 15px;
-  border-left-width: 4px;
-  border-left-color: #516c7b;
+  padding: 8px 8px 8px 15px;d321
   border-radius: 2px;
-  background: #f6f6f6;
+  background: #fafafa;
   overflow: hidden;
 
   .block {
@@ -163,6 +156,7 @@ code {
 
 .row {
   clear: both;
+  margin: 15px 0;
 }
 
 .nobullets {
@@ -178,7 +172,12 @@ strong {
 }
 
 .code-title {
-  display: block;
-  padding: 3px 0;
+  display: inline-block;
+  padding: 5px 8px;
   font-style: italic;
+  // background: linear-gradient(to bottom, #f9f9f9 0%,#e8e8e8 100%);
+  // border: 1px solid #d0d0d0;
+  // border-bottom: none;
+  // border-radius: 6px 6px 0 0;
+  // text-shadow: 0 1px 0 #fff;
 }
