@@ -1,9 +1,13 @@
 @import url("http://fonts.googleapis.com/css?family=PT+Sans,italic");
 
 
-$codeRed: #f00;
+$codeRed: #ff3754;
+$codeOrange: #ff9749;
+$codeYellow: #f1d950;
 $codeGreen: #00b33e;
-$codeBlue: #00f;
+$codeBlue: #36c;
+$codePurple: #bf50c2;
+$codeGray: #aaa;
 $darkBlue: #284352;
 
 /* Modified CSS reset from: http://meyerweb.com/eric/tools/css/reset/
@@ -20,7 +24,6 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
   font: inherit;
   vertical-align: baseline;
 }
@@ -28,19 +31,25 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 body {
   font-family: "PT Sans", sans-serif;
   background: #e9edf2;
+  background: linear-gradient(to bottom, #fff 0%, #e2e7ee 20%, #e2e7ee 100%);
   color: #333;
 }
 
 @mixin clearfix {
-  content: " ";
-  display: block;
-  height: 0;
-  clear: both;
+  &:after {
+    content: " ";
+    display: block;
+    height: 0;
+    clear: both;
+  }
 }
 
 @mixin inset {
   box-shadow: 0 2px 0 #f8f8f8,
-              inset 0 0 4px rgba(0,0,0,.15);
+              inset 0 0 4px rgba(0,0,0,.04),
+              inset 0 0 4px rgba(0,0,0,.04),
+              inset 0 0 4px rgba(0,0,0,.04),
+              inset 0 0 4px rgba(0,0,0,.04);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -62,24 +71,22 @@ h1 {
   box-shadow: inset 0 0 10px rgba(0,0,0,.6),
               0 3px 0 #fff;
   text-shadow: 0 3px 0 #000;
-
 }
 
 h2 {
-  font-size: 160%;
+  font-size: 180%;
   margin-top: -60px;
   margin-bottom: 30px;
 }
 
 h3 {
-  font-size: 130%;
+  font-size: 140%;
   text-decoration: underline;
   margin-top: 15px;
 }
 
 section {
-  &:after { @include clearfix; }
-
+  @include clearfix;
   @include inset;
 
   margin: 100px auto;
@@ -92,26 +99,50 @@ section {
   padding: 25px 150px;
 }
 
+:not([class^="column-"]) > pre,
+.code-title + pre {
+  margin: 0;
+}
+
+dd pre {
+  margin: 10px 0 !important;
+}
+
+dt:not(:first-child) {
+  margin-top: 25px !important;
+}
+
+// INLINE CODE
+code {
+  display: inline;
+}
+
+// BLOCK CODE
+pre code {
+  display: block;
+  padding: 10px 10px 10px 20px;
+
+  li & {
+    margin: 10px 20px;
+  }
+}
 
 code {
   @include inset;
 
-  display: block;
-  font-family: Consolas;
   border: 1px solid #d0d0d0;
-  padding: 8px 8px 8px 15px;d321
   border-radius: 2px;
-  background: #fafafa;
+  background: #fbfbfb;
   overflow: hidden;
+  font-family: Menlo;
 
   .block {
     margin: 4px 0;
     padding: 30px 60px;
     display: inline-block;
-    width: 150px;
+    width: 180px;
     border-width: 1px;
     border-style: dashed;
-    text-transform: uppercase;
     text-align: center;
   }
 
@@ -119,14 +150,32 @@ code {
     color: $codeRed;
     &.block { border-color: $codeRed; }
   }
+  .orange {
+    color: $codeOrange;
+  }
+  .yellow {
+    color: $codeYellow;
+  }
   .green {
     color: $codeGreen;
-    background: rgba(0, 179, 62, 0.03) url("stripes.png");
-    &.block { border-color: $codeGreen; }
+    &.block {
+      background: rgba(0, 179, 62, 0.03) url("stripes.png");
+      border-color: $codeGreen;
+    }
   }
   .blue  {
     color: $codeBlue;
     &.block { border-color: $codeBlue; }
+  }
+  .purple {
+    color: $codePurple;
+  }
+  .gray {
+    color: $codeGray;
+  }
+  .comment {
+    color: $codeGray;
+    font-style: italic;
   }
 }
 
@@ -164,7 +213,15 @@ code {
 }
 
 ul {
-  margin-left: 10px;
+  margin-left: 25px;
+}
+
+dd {
+  margin: 6px 6px 6px 20px;
+}
+
+dd pre {
+  margin-bottom: 8px;
 }
 
 strong {
@@ -173,11 +230,17 @@ strong {
 
 .code-title {
   display: inline-block;
-  padding: 5px 8px;
+  padding: 5px 0;
   font-style: italic;
+  font-size: 110%;
   // background: linear-gradient(to bottom, #f9f9f9 0%,#e8e8e8 100%);
   // border: 1px solid #d0d0d0;
   // border-bottom: none;
   // border-radius: 6px 6px 0 0;
   // text-shadow: 0 1px 0 #fff;
+}
+
+.br {
+  display: block;
+  height: 0;
 }

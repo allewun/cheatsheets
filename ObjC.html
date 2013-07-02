@@ -14,8 +14,9 @@
                     <em class="code-title">.h file</em>
                     <pre>
 <code>@interface <span class="blue">ClassName</span> : <span class="blue">Superclass</span> {
-<span class="green block"><span class="hide">  // </span>Instance Variables</span>
+<span class="green block"><span class="hide">  // </span>Instance Variables<span class="br"> </span>(Protected)</span>
 }
+
 <span class="green block"><span class="hide">  // </span>Public Methods</span>
 @end</code>
                     </pre>
@@ -23,26 +24,59 @@
                 <div class="column-2">
                     <em class="code-title">.m file</em>
                     <pre>
-<code>@implementation <span class="blue">ClassName</span>
+<code>@implementation <span class="blue">ClassName</span> {
+<span class="green block"><span class="hide">  // </span>Instance Variables<span class="br"> </span>(Private)</span>
+}
+
 <span class="green block"><span class="hide">  // </span>Method Implementations</span>
 @end</code>
                      </pre>
                 </div>
             </div>
             <div class="row">
-                <div class="column-2">
-                    <h3>Instance Variable Directives</h3>
-                    <ul class="nobullets">
-                        <li><strong>@protected</strong> - default for ivars defined in @interface</li>
-                        <li><strong>@private</strong> - default for ivars defined in @implementation</li>
-                        <li><strong>@public</strong></li>
-                        <li><strong>@package</strong></li>
-                    </ul>
-                </div>
-                <div class="column-2">
-                    <h3>Properties</h3>
-                    <p>Properties are essentially accessors for instance variables.</p>
-                </div>
+                <h3>Instance Variable Directives</h3>
+                <ul class="nobullets">
+                    <li><strong>@protected</strong> - own class and subclasses can access the ivars; default for ivars defined under @interface</li>
+                    <li><strong>@private</strong> - only own class can access the ivars; default for ivars defined under @implementation</li>
+                    <li><strong>@public</strong> - any class can access the ivars.</li>
+                    <li><strong>@package</strong></li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Properties / Synthesis</h2>
+            <div class="row">
+                <dl>
+                    <dt><strong>@property</strong> identifies a property of a class, usually an instance variable to be exposed to the public.</dt>
+                    <dd>
+                        <pre><code>@property (<span class="blue">attr1</span>, <span class="blue">attr2</span>, ...) <span class="blue">Type</span> <span class="blue">Name</span>;</code></pre>
+                        Attributes:
+                        <ul class="nobullets">
+                            <li><strong>readwrite*</strong> / <strong>readonly</strong></li>
+                            <li><strong>atomic*</strong> / <strong>nonatomic</strong></li>
+                            <li><strong>assign</strong> / <strong>retain</strong> / <strong>copy</strong></li>
+                            <li><strong>strong</strong> / <strong>weak</strong></li>
+                            <li><strong>getter=</strong> / <strong>setter=</strong></li>
+                        </ul>
+                    </dd>
+                    <dt><strong>@synthesize</strong> tells the compiler to automatically create the accessor methods for a given @property.</dt>
+                    <dd>
+                        <pre><code>@synthesize <span class="blue">Property</span> = _<span class="blue">Ivar</span>;</code></pre>
+                    </dd>
+                </dl>
+            </div>
+            <div class="row">
+                    <em class="code-title">Example:</em>
+                    <pre>
+<code><span class="red">@synthesize</span> window = _window;     <span class="comment">// Synthesize the "window" property and assign
+                                  // it to the "_window" instance variable</span>
+
+[<span class="green">window</span> <span class="orange">makeKeyAndVisible</span>];       <span class="comment">// Error: non-existent instance variable "window"</span>
+[<span class="green">_window</span> <span class="orange">makeKeyAndVisible</span>];      <span class="comment">// Ok.</span>
+[<span class="blue">self</span>.<span class="green">window</span> <span class="orange">makeKeyAndVisible</span>];  <span class="comment">// Better. Using the synthesized accessor method</span>
+</code>
+                     </pre>
             </div>
         </section>
 
@@ -55,10 +89,10 @@
                 <div class="column-2">
                     <em class="code-title">.h file (convention: ClassName+CategoryName.h)</em>
                     <pre>
-<code>#import "ClassName.h"
+<code>#import "<span class="blue">ClassName</span>.h"
 
 @interface <span class="blue">ClassName</span> (<span class="blue">CategoryName</span>)
-<span class="hide">  // </span><span class="green block">Methods Only (No ivars)</span>
+<span class="hide">  // </span><span class="green block">Methods Only<span class="br"> </span>(No ivars)</span>
 @end</code>
                     </pre>
                 </div>
