@@ -25,6 +25,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   padding: 0;
   border: 0;
   font: inherit;
+  font-size: 100%;
   vertical-align: baseline;
 }
 
@@ -74,13 +75,13 @@ h1 {
 }
 
 h2 {
-  font-size: 180%;
+  font-size: 170%;
   margin-top: -60px;
   margin-bottom: 30px;
 }
 
 h3 {
-  font-size: 140%;
+  font-size: 130%;
   text-decoration: underline;
   margin-top: 15px;
 }
@@ -95,8 +96,8 @@ section {
   border-left: none;
   border-right: none;
   border-radius: 3px;
-  font-size: 13px;
-  padding: 25px 150px;
+  font-size: 14px;
+  padding: 25px 120px;
 }
 
 :not([class^="column-"]) > pre,
@@ -135,6 +136,7 @@ code {
   background: #fbfbfb;
   overflow: hidden;
   font-family: Menlo;
+  font-size: 13px;
 
   .block {
     margin: 4px 0;

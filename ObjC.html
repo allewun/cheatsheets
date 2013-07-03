@@ -48,7 +48,7 @@
             <h2>Properties / Synthesis</h2>
             <div class="row">
                 <dl>
-                    <dt><strong>@property</strong> identifies a property of a class, usually an instance variable to be exposed to the public.</dt>
+                    <dt><strong>@property</strong> identifies a property of a class, usually an instance variable to be exposed to the public. Defined in the @interface section.</dt>
                     <dd>
                         <pre><code>@property (<span class="blue">attr1</span>, <span class="blue">attr2</span>, ...) <span class="blue">Type</span> <span class="blue">Name</span>;</code></pre>
                         Attributes:
@@ -60,7 +60,7 @@
                             <li><strong>getter=</strong> / <strong>setter=</strong></li>
                         </ul>
                     </dd>
-                    <dt><strong>@synthesize</strong> tells the compiler to automatically create the accessor methods for a given @property.</dt>
+                    <dt><strong>@synthesize</strong> tells the compiler to automatically create the accessor methods for a given @property. Defined in the @implementation section.</dt>
                     <dd>
                         <pre><code>@synthesize <span class="blue">Property</span> = _<span class="blue">Ivar</span>;</code></pre>
                     </dd>
@@ -70,7 +70,10 @@
                     <em class="code-title">Example:</em>
                     <pre>
 <code><span class="red">@synthesize</span> window = _window;     <span class="comment">// Synthesize the "window" property and assign
-                                  // it to the "_window" instance variable</span>
+                                  // it to the "_window" instance variable
+                                  //
+                                  // the "= _window" part (and the corresponding declaration
+                                  // of the ivar in the .h file) is only needed for &lt; iOS 4.0</span>
 
 [<span class="green">window</span> <span class="orange">makeKeyAndVisible</span>];       <span class="comment">// Error: non-existent instance variable "window"</span>
 [<span class="green">_window</span> <span class="orange">makeKeyAndVisible</span>];      <span class="comment">// Ok.</span>
@@ -110,7 +113,5 @@
                 <p>A category defined without a name is a "class extension." Class extensions allow you to define additional instance variables.</p>
             </div>
         </section>
-
-
     </body>
 </html>
