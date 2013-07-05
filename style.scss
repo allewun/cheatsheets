@@ -250,3 +250,11 @@ strong {
   display: block;
   height: 0;
 }
+
+p code {
+  padding: 1px 4px;
+}
+
+p+p {
+  margin-top: 10px;
+}

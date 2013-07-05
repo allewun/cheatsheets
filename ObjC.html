@@ -112,8 +112,15 @@
                 <h3>Class Extensions</h3>
                 <p>
                     A category defined without a name is a "class extension," also sometimes called an "anonymous category."
-                    Class extensions allow you to extend a class by defining additional instance variables and properties.
+                    They allow you to extend a class by defining additional instance variables, properties, and private methods.
                     You need access to the original source code, since the extended methods are implemented in the original class' @implementation block.
+                </p>
+                <p>
+                    Properties are automatically synthesized by the compiler.
+                    Methods must be implemented in the class' primary @implementation block.
+                </p>
+                <p>
+                    A common use case for class extensions is to redefine a <code>readonly</code> property to be <code>readwrite</code>, so that within the class it is modifiable, but outside the class it's only readable.
                 </p>
                 <div class="row">
                     <em class="code-title">Original .m file</em>
@@ -134,10 +141,6 @@
 </code>
                     </pre>
                 </div>
-                <p>
-                    Properties are automatically synthesized by the compiler.
-                    Methods must be implemented in the class' primary @implementation block.
-                </p>
             </div>
         </section>
     </body>
