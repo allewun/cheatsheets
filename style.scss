@@ -32,7 +32,8 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 body {
   font-family: "PT Sans", sans-serif;
   background: #e9edf2;
-  background: linear-gradient(to bottom, #fff 0%, #e2e7ee 20%, #e2e7ee 100%);
+  background: url(noise.png),
+              linear-gradient(to bottom, #fff 0%, #e2e7ee 20%, #e2e7ee 100%);
   color: #333;
 }
 
@@ -89,7 +90,9 @@ section {
   @include clearfix;
   @include inset;
 
-  margin: 100px auto;
+  section+& { margin: 130px auto; }
+
+  margin: 50px auto auto;
   background: #fff;
   border: 1px solid #91a0c0;
   border-left: none;
@@ -99,7 +102,7 @@ section {
   padding: 25px 120px;
 }
 
-:not([class^="column-"]) > pre,
+:not([class^="col-"]) > pre,
 .code-title + pre {
   margin: 0;
 }
@@ -169,8 +172,8 @@ code {
   .green {
     color: $codeGreen;
     &.block {
-      background: rgba(0, 179, 62, 0.03) url("stripes.png");
-      border-color: $codeGreen;
+      background: rgba(0, 179, 62, 0.02) url("stripes.png");
+      border-color: rgba($codeGreen, 0.5);
     }
   }
   .blue  {
@@ -189,11 +192,11 @@ code {
   }
 }
 
-[class^="column-"] {
+[class^="col-"] {
   float: left;
 }
 
-.column-2 {
+.col-2 {
   width: 49%;
 
   &:last-child {
@@ -201,7 +204,7 @@ code {
   }
 }
 
-.column-3 {
+.col-3 {
   width: 32%;
 
   &:last-child {
@@ -211,6 +214,14 @@ code {
 
 .hide {
   display: none;
+
+  code & {
+    display: block;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    text-indent: -9999px;
+  }
 }
 
 .row {
@@ -226,6 +237,11 @@ ul {
   margin-left: 25px;
 }
 
+dt {
+  padding-left: 20px;
+  text-indent: -20px;
+}
+
 dd {
   margin: 6px 6px 6px 20px;
 }
@@ -236,6 +252,10 @@ dd pre {
 
 strong {
   font-weight: bold;
+}
+
+em {
+  font-style: italic;
 }
 
 .code-title {

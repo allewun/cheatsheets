@@ -19,7 +19,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 body {
   font-family: "PT Sans", sans-serif;
   background: #e9edf2;
-  background: linear-gradient(to bottom, white 0%, #e2e7ee 20%, #e2e7ee 100%);
+  background: url(noise.png), linear-gradient(to bottom, white 0%, #e2e7ee 20%, #e2e7ee 100%);
   color: #333; }
 
 h1, h2, h3, h4, h5, h6 {
@@ -51,7 +51,7 @@ h3 {
 
 section {
   box-shadow: 0 2px 0 #f8f8f8, inset 0 0 4px rgba(0, 0, 0, 0.04), inset 0 0 4px rgba(0, 0, 0, 0.04), inset 0 0 4px rgba(0, 0, 0, 0.04), inset 0 0 4px rgba(0, 0, 0, 0.04);
-  margin: 100px auto;
+  margin: 50px auto auto;
   background: #fff;
   border: 1px solid #91a0c0;
   border-left: none;
@@ -64,8 +64,10 @@ section {
     display: block;
     height: 0;
     clear: both; }
+  section + section {
+    margin: 130px auto; }
 
-:not([class^="column-"]) > pre,
+:not([class^="col-"]) > pre,
 .code-title + pre {
   margin: 0; }
 
@@ -119,8 +121,8 @@ code {
   code .green {
     color: #00b33e; }
     code .green.block {
-      background: rgba(0, 179, 62, 0.03) url("stripes.png");
-      border-color: #00b33e; }
+      background: rgba(0, 179, 62, 0.02) url("stripes.png");
+      border-color: rgba(0, 179, 62, 0.5); }
   code .blue {
     color: #3366cc; }
     code .blue.block {
@@ -133,21 +135,27 @@ code {
     color: #aaaaaa;
     font-style: italic; }
 
-[class^="column-"] {
+[class^="col-"] {
   float: left; }
 
-.column-2 {
+.col-2 {
   width: 49%; }
-  .column-2:last-child {
+  .col-2:last-child {
     float: right; }
 
-.column-3 {
+.col-3 {
   width: 32%; }
-  .column-3:last-child {
+  .col-3:last-child {
     float: right; }
 
 .hide {
   display: none; }
+  code .hide {
+    display: block;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    text-indent: -9999px; }
 
 .row {
   margin: 15px 0; }
@@ -163,6 +171,10 @@ code {
 ul {
   margin-left: 25px; }
 
+dt {
+  padding-left: 20px;
+  text-indent: -20px; }
+
 dd {
   margin: 6px 6px 6px 20px; }
 
@@ -171,6 +183,9 @@ dd pre {
 
 strong {
   font-weight: bold; }
+
+em {
+  font-style: italic; }
 
 .code-title {
   display: inline-block;
