@@ -15,7 +15,7 @@ $darkBlue: #284352;
 ============================================================================ */
 
 html, body, div, span,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, code,
 a, del, dfn, em, img,
 small, strike, strong, sub, sup, tt, var,
 dl, dt, dd, ol, ul, li,
@@ -75,15 +75,14 @@ h1 {
 }
 
 h2 {
-  font-size: 170%;
+  font-size: 180%;
   margin-top: -60px;
   margin-bottom: 30px;
 }
 
 h3 {
-  font-size: 130%;
+  font-size: 140%;
   text-decoration: underline;
-  margin-top: 15px;
 }
 
 section {
@@ -105,6 +104,10 @@ section {
   margin: 0;
 }
 
+pre {
+  white-space: normal;
+}
+
 dd pre {
   margin: 10px 0 !important;
 }
@@ -122,6 +125,8 @@ code {
 pre code {
   display: block;
   padding: 10px 10px 10px 20px;
+  white-space: pre;
+  margin-bottom: 15px;
 
   li & {
     margin: 10px 20px;
@@ -131,7 +136,7 @@ pre code {
 code {
   @include inset;
 
-  border: 1px solid #d0d0d0;
+  border: 1px solid #ccc;
   border-radius: 2px;
   background: #fbfbfb;
   overflow: hidden;
@@ -140,12 +145,15 @@ code {
 
   .block {
     margin: 4px 0;
-    padding: 30px 60px;
+    padding: 30px 10px;
     display: inline-block;
-    width: 180px;
+    width: 270px ;
+    box-sizing: border-box;
     border-width: 1px;
     border-style: dashed;
     text-align: center;
+    font-family: "PT Sans";
+    font-size: 105%;
   }
 
   .red   {
@@ -206,7 +214,7 @@ code {
 }
 
 .row {
-  clear: both;
+  @include clearfix;
   margin: 15px 0;
 }
 
@@ -235,11 +243,7 @@ strong {
   padding: 5px 0;
   font-style: italic;
   font-size: 110%;
-  // background: linear-gradient(to bottom, #f9f9f9 0%,#e8e8e8 100%);
-  // border: 1px solid #d0d0d0;
-  // border-bottom: none;
-  // border-radius: 6px 6px 0 0;
-  // text-shadow: 0 1px 0 #fff;
+  color: #777;
 }
 
 .br {
