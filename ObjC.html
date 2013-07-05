@@ -28,7 +28,7 @@
 <span class="green block"><span class="hide">  // </span>Instance Variables<span class="br"> </span>(Private)</span>
 }
 
-<span class="green block"><span class="hide">  // </span>Method Implementations</span>
+<span class="green block"><span class="hide">  // </span>Public/Private Method Implementations</span>
 @end</code>
                      </pre>
                 </div>
@@ -73,7 +73,7 @@
                                   // it to the "_window" instance variable
                                   //
                                   // the "= _window" part (and the corresponding declaration
-                                  // of the ivar in the .h file) is only needed for &lt; iOS 4.0</span>
+                                  // of the ivar in the .h file) is only needed for iOS &lt;4.0</span>
 
 [<span class="green">window</span> <span class="orange">makeKeyAndVisible</span>];       <span class="comment">// Error: non-existent instance variable "window"</span>
 [<span class="green">_window</span> <span class="orange">makeKeyAndVisible</span>];      <span class="comment">// Ok.</span>
@@ -86,7 +86,7 @@
         <section>
             <h2>Categories</h2>
             <div class="row">
-                <p>Categories are used to extend existing classes, especially when you don't have access to the existing source code. </p>
+                <p>Categories are used to add methods to existing classes, especially when you don't have access to the existing source code.</p>
             </div>
             <div class="row">
                 <div class="column-2">
@@ -110,7 +110,34 @@
             </div>
             <div class="row">
                 <h3>Class Extensions</h3>
-                <p>A category defined without a name is a "class extension." Class extensions allow you to define additional instance variables.</p>
+                <p>
+                    A category defined without a name is a "class extension," also sometimes called an "anonymous category."
+                    Class extensions allow you to extend a class by defining additional instance variables and properties.
+                    You need access to the original source code, since the extended methods are implemented in the original class' @implementation block.
+                </p>
+                <div class="row">
+                    <em class="code-title">Original .m file</em>
+                    <pre>
+<code><span class="comment">...</span>
+
+@interface <span class="blue">ClassName</span> () {
+<span class="hide">  // </span><span class="green block">New private ivars</span>
+}
+<span class="hide">  // </span><span class="green block">New private properties and methods</span>
+@end
+
+<span class="comment">...</span>
+
+@implementation <span class="blue">ClassName</span>
+<span class="comment">...</span>
+@end
+</code>
+                    </pre>
+                </div>
+                <p>
+                    Properties are automatically synthesized by the compiler.
+                    Methods must be implemented in the class' primary @implementation block.
+                </p>
             </div>
         </section>
     </body>
