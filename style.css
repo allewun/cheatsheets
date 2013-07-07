@@ -43,7 +43,8 @@ h1 {
 h2 {
   font-size: 180%;
   margin-top: -60px;
-  margin-bottom: 30px; }
+  margin-bottom: 30px;
+  text-shadow: 0 1px 0 #fff, 0 1px 0 #fff, 0 1px 0 #fff; }
 
 h3 {
   font-size: 140%;
@@ -96,7 +97,7 @@ code {
   border: 1px solid #ccc;
   border-radius: 2px;
   background: #fbfbfb;
-  overflow: hidden;
+  overflow-x: auto;
   font-family: Menlo;
   font-size: 13px; }
   code .block {
@@ -129,6 +130,8 @@ code {
       border-color: #3366cc; }
   code .purple {
     color: #bf50c2; }
+  code .teal {
+    color: #00e6a9; }
   code .gray {
     color: #aaaaaa; }
   code .comment {
@@ -136,7 +139,8 @@ code {
     font-style: italic; }
 
 [class^="col-"] {
-  float: left; }
+  float: left;
+  height: 100%; }
 
 .col-2 {
   width: 49%; }
@@ -202,4 +206,4 @@ p code {
   padding: 1px 4px; }
 
 p + p {
-  margin-top: 10px; }
+  margin-top: 15px; }

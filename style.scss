@@ -9,6 +9,7 @@ $codeBlue: #36c;
 $codePurple: #bf50c2;
 $codeGray: #aaa;
 $darkBlue: #284352;
+$codeTeal: darken(#00ffbc, 5%);
 
 /* Modified CSS reset from: http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
@@ -79,6 +80,9 @@ h2 {
   font-size: 180%;
   margin-top: -60px;
   margin-bottom: 30px;
+  text-shadow: 0 1px 0 #fff,
+               0 1px 0 #fff,
+               0 1px 0 #fff;
 }
 
 h3 {
@@ -142,7 +146,7 @@ code {
   border: 1px solid #ccc;
   border-radius: 2px;
   background: #fbfbfb;
-  overflow: hidden;
+  overflow-x: auto;
   font-family: Menlo;
   font-size: 13px;
 
@@ -183,6 +187,9 @@ code {
   .purple {
     color: $codePurple;
   }
+  .teal {
+    color: $codeTeal;
+  }
   .gray {
     color: $codeGray;
   }
@@ -194,6 +201,7 @@ code {
 
 [class^="col-"] {
   float: left;
+  height: 100%;
 }
 
 .col-2 {
@@ -276,5 +284,5 @@ p code {
 }
 
 p+p {
-  margin-top: 10px;
+  margin-top: 15px;
 }
