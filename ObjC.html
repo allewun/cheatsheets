@@ -192,8 +192,8 @@
                 <div class="col-2">
                     <em class="code-title">Example (takes 2 ints, returns an int):</em>
                     <pre>
-<code><span class="purple">int</span> (^sum)(<span class="purple">int</span>, <span class="purple">int</span>) = ^(<span class="purple">int</span> a, <span class="purple">int</span> b) {
-    <span class="red">return</span> a + b;
+<code>int (^sum)(int, int) = ^(int a, int b) {
+    return a + b;
 };
 </code>
                     </pre>
@@ -201,12 +201,12 @@
                 <div class="col-2">
                     <em class="code-title">Example (no arguments):</em>
                     <pre>
-<code><span class="purple">NSString</span>* (^randomGreeting)(<span class="purple">void</span>) = ^{
-    <span class="purple">int</span> num = <span class="orange">arc4random()</span> % <span class="blue">3</span>;
-    <span class="red">switch</span> (num) {
-        <span class="red">case</span> <span class="blue">0</span>: <span class="red">return</span> [<span class="purple">NSString</span> <span class="orange">stringWithFormat</span>:<span class="green">@"Hello"</span>];
-        <span class="red">case</span> <span class="blue">1</span>: <span class="red">return</span> [<span class="purple">NSString</span> <span class="orange">stringWithFormat</span>:<span class="green">@"Steve"</span>];
-        <span class="red">case</span> <span class="blue">2</span>: <span class="red">return</span> [<span class="purple">NSString</span> <span class="orange">stringWithFormat</span>:<span class="green">@"Jobs"</span>];
+<code>NSString* (^randomGreeting)(void) = ^{
+    int num = arc4random() % 3;
+    switch (num) {
+        case 0: return [NSString stringWithFormat:@"Hello"];
+        case 1: return [NSString stringWithFormat:@"Steve"];
+        case 2: return [NSString stringWithFormat:@"Jobs"];
     }
 };
 </code>
@@ -220,14 +220,14 @@
 <code><span class="comment">// value of "foo" within the block is determined
 // when the block is defined</span>
 
-<span class="purple">int</span> foo = <span class="blue">10</span>;
+int foo = 10;
 
-<span class="purple">void</span> (^printFoo)(<span class="purple">void</span>) = ^(<span class="purple">void</span>) {
-    <span class="orange">NSLog</span>(<span class="green">@"foo = %i"</span>, foo);
-    <span class="comment">// modifying "foo" here would generate a compiler error</span>
+void(^printFoo)(void) = ^(void) {
+    NSLog(@"foo = %i", foo);
+    <span class="comment">// modifying "foo" here => compiler error</span>
 };
 
-foo = <span class="blue">15</span>;
+foo = 15;
 
 printFoo(); <span class="comment">// prints 10</span>
 
@@ -238,17 +238,17 @@ printFoo(); <span class="comment">// prints 10</span>
                 <div class="col-2">
                     <em class="code-title">Example (__block scope):</em>
                     <pre>
-<code><span class="comment">// value of "foo" is determined
+<code><span class="comment">// value of "foo" within the block is determined
 // when the block is run</span>
 
-__block <span class="purple">int</span> foo = <span class="blue">10</span>;
+<span class="blue">__block</span> int foo = 10;
 
-<span class="purple">void</span> (^printFoo)(<span class="purple">void</span>) = ^(<span class="purple">void</span>) {
-    <span class="orange">NSLog</span>(<span class="green">@"foo = %i"</span>, foo);
+void (^printFoo)(void) = ^(void) {
+    NSLog(@"foo = %i", foo);
     foo = 30;  <span class="comment">// ok</span>
 };
 
-foo = <span class="blue">15</span>;
+foo = 15;
 
 printFoo(); <span class="comment">// prints 15</span>
 
