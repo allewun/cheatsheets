@@ -88,6 +88,10 @@ h2 {
 h3 {
   font-size: 140%;
   text-decoration: underline;
+
+  &:not(:first-child) {
+    margin-top: 20px;
+  }
 }
 
 section {
@@ -123,17 +127,13 @@ dt:not(:first-child) {
   margin-top: 25px !important;
 }
 
-// INLINE CODE
-code {
-  display: inline;
-}
-
 // BLOCK CODE
 pre code {
   display: block;
   padding: 10px 10px 10px 20px;
   white-space: pre;
   margin-bottom: 15px;
+  margin: 0;
 
   li & {
     margin: 10px 20px;
@@ -149,6 +149,8 @@ code {
   overflow-x: auto;
   font-family: Menlo;
   font-size: 13px;
+  display: inline;
+  margin: 0 2px;
 
   .block {
     margin: 4px 0;
@@ -260,6 +262,7 @@ dd pre {
 
 strong {
   font-weight: bold;
+  color: #111;
 }
 
 em {
@@ -279,10 +282,15 @@ em {
   height: 0;
 }
 
-p code {
-  padding: 1px 4px;
+p code,
+li code {
+  padding: 0 4px;
 }
 
 p+p {
+  margin-top: 15px;
+}
+
+p+ul {
   margin-top: 15px;
 }

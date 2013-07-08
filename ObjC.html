@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Objective-C - Cheatsheet</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="style.css" />
     </head>
     <body>
@@ -36,9 +37,9 @@
             <div class="row">
                 <h3>Instance Variable Directives</h3>
                 <ul class="nobullets">
-                    <li><strong>@protected</strong> - own class and subclasses can access the ivars; default for ivars defined under @interface</li>
-                    <li><strong>@private</strong> - only own class can access the ivars; default for ivars defined under @implementation</li>
-                    <li><strong>@public</strong> - any class can access the ivars.</li>
+                    <li><strong>@protected</strong> &mdash; own class and subclasses can access the ivars; default for ivars defined under @interface</li>
+                    <li><strong>@private</strong> &mdash; only own class can access the ivars; default for ivars defined under @implementation</li>
+                    <li><strong>@public</strong> &mdash; any class can access the ivars.</li>
                     <li><strong>@package</strong></li>
                 </ul>
             </div>
@@ -51,13 +52,13 @@
                     <dt><strong>@property</strong> identifies a property of a class, usually an instance variable to be exposed to the public.<br />(Defined in the @interface section.)</dt>
                     <dd>
                         <pre><code>@property (<span class="blue">attr1</span>, <span class="blue">attr2</span>, ...) <span class="blue">Type</span> <span class="blue">Name</span>;</code></pre>
-                        Attributes:
+                        <strong>Attributes</strong> (<u>underlined</u> = default):
                         <ul class="nobullets">
-                            <li><strong>readwrite*</strong> / <strong>readonly</strong></li>
-                            <li><strong>atomic*</strong> / <strong>nonatomic</strong></li>
-                            <li><strong>assign</strong> / <strong>retain</strong> / <strong>copy</strong></li>
-                            <li><strong>strong</strong> / <strong>weak</strong></li>
-                            <li><strong>getter=</strong> / <strong>setter=</strong></li>
+                            <li><u>readwrite</u>, readonly</li>
+                            <li><u>atomic</u>, nonatomic</li>
+                            <li><u>assign</u>, retain, copy</li>
+                            <li><u>weak</u>, strong <em>(ARC only)</em></li>
+                            <li>getter=, setter=</li>
                         </ul>
                     </dd>
                     <dt><strong>@synthesize</strong> tells the compiler to automatically create the accessor methods for a given @property.<br />(Defined in the @implementation section.)</dt>
@@ -95,7 +96,7 @@
 <code>#import "<span class="blue">ClassName</span>.h"
 
 @interface <span class="blue">ClassName</span> (<span class="blue">CategoryName</span>)
-<span class="hide">  // </span><span class="green block">Methods Only<span class="br"> </span>(No ivars)</span>
+<span class="hide">  // </span><span class="green block">Methods &amp; Properties<span class="br"> </span>(No ivars)</span>
 @end</code>
                     </pre>
                 </div>
@@ -130,7 +131,7 @@
 @interface <span class="blue">ClassName</span> () {
 <span class="hide">  // </span><span class="green block">New private ivars</span>
 }
-<span class="hide">  // </span><span class="green block">New private properties and methods</span>
+<span class="hide">  // </span><span class="green block">New private properties &amp; methods</span>
 @end
 
 <span class="hide">  // </span><span class="comment">...</span>
@@ -241,7 +242,7 @@ printFoo(); <span class="comment">// prints 10</span>
 <code><span class="comment">// value of "foo" within the block is determined
 // when the block is run</span>
 
-<span class="blue">__block</span> int foo = 10;
+<strong class="blue">__block</strong> int foo = 10;
 
 void (^printFoo)(void) = ^(void) {
     NSLog(@"foo = %i", foo);
@@ -257,7 +258,23 @@ printFoo(); <span class="comment">// prints 15</span>
                     </pre>
                 </div>
             </div>
+        </section>
 
+        <section>
+            <h2>Memory Management</h2>
+            <h3>Non-ARC</h3>
+            <ul>
+                <li>Objects created using <code>alloc</code>, <code>copy</code>, <code>mutableCopy</code>, or <code>new</code> need to be released manually.</li>
+                <li><code>autorelease</code> doesn't affect retain counts.</li>
+                <li>When a object's reference count reaches 0, the system sends it a <code>dealloc</code> message.</li>
+                <li>Do not explicitly release an <code>autorelease</code>'d object.</li>
+            </ul>
+
+            <h3>ARC</h3>
+            <ul>
+                <li>In an ARC project, the the compiler automatically takes care of calling <code>retain</code>, <code>release</code>, and <code>autorelease</code>.</li>
+                <li>Instance variables don't need to be released in the dealloc method &mdash; in fact, in ARC projects, dealloc is usually unnecessary.</li>
+            </ul>
         </section>
     </body>
 </html>
