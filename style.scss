@@ -49,10 +49,11 @@ body {
 
 @mixin inset {
   box-shadow: 0 2px 0 #f8f8f8,
-              inset 0 0 4px rgba(0,0,0,.04),
-              inset 0 0 4px rgba(0,0,0,.04),
-              inset 0 0 4px rgba(0,0,0,.04),
-              inset 0 0 4px rgba(0,0,0,.04);
+              inset 0 0 4px rgba(0,0,0,.03),
+              inset 0 0 4px rgba(0,0,0,.03),
+              inset 0 0 4px rgba(0,0,0,.03),
+              inset 0 0 4px rgba(0,0,0,.03),
+              inset 0 0 4px rgba(0,0,0,.03);
 }
 
 h1, h2, h3, h4, h5, h6 {
