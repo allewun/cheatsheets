@@ -114,28 +114,28 @@ code {
     font-family: "PT Sans";
     font-size: 105%; }
   code .red {
-    color: #ff3754; }
+    color: #ff3754 !important; }
     code .red.block {
       border-color: #ff3754; }
   code .orange {
-    color: #ff9749; }
+    color: #ff9749 !important; }
   code .yellow {
-    color: #f1d950; }
+    color: #f1d950 !important; }
   code .green {
-    color: #00b33e; }
+    color: #00b33e !important; }
     code .green.block {
       background: rgba(0, 179, 62, 0.02) url("stripes.png");
       border-color: rgba(0, 179, 62, 0.5); }
   code .blue {
-    color: #3378cc; }
+    color: #3378cc !important; }
     code .blue.block {
       border-color: #3378cc; }
   code .purple {
-    color: #bf50c2; }
+    color: #bf50c2 !important; }
   code .teal {
-    color: #00e6a9; }
+    color: #00e6a9 !important; }
   code .gray {
-    color: #aaaaaa; }
+    color: #aaaaaa !important; }
   code .comment {
     color: #aaaaaa;
     font-style: italic; }
@@ -150,9 +150,8 @@ code {
     float: right; }
 
 .col-3 {
-  width: 32%; }
-  .col-3:last-child {
-    float: right; }
+  width: 32%;
+  margin-right: 8px; }
 
 .hide {
   display: none; }

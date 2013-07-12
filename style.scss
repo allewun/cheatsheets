@@ -167,35 +167,36 @@ code {
   }
 
   .red   {
-    color: $codeRed;
+    color: $codeRed !important;
     &.block { border-color: $codeRed; }
   }
   .orange {
-    color: $codeOrange;
+    color: $codeOrange !important;
   }
   .yellow {
-    color: $codeYellow;
+    color: $codeYellow !important;
   }
   .green {
-    color: $codeGreen;
+    color: $codeGreen !important;
     &.block {
       background: rgba(0, 179, 62, 0.02) url("stripes.png");
       border-color: rgba($codeGreen, 0.5);
     }
   }
   .blue  {
-    color: $codeBlue;
+    color: $codeBlue !important;
     &.block { border-color: $codeBlue; }
   }
   .purple {
-    color: $codePurple;
+    color: $codePurple !important;
   }
   .teal {
-    color: $codeTeal;
+    color: $codeTeal !important;
   }
   .gray {
-    color: $codeGray;
+    color: $codeGray !important;
   }
+
   .comment {
     color: $codeGray;
     font-style: italic;
@@ -217,10 +218,7 @@ code {
 
 .col-3 {
   width: 32%;
-
-  &:last-child {
-    float: right;
-  }
+  margin-right: 8px;
 }
 
 .hide {

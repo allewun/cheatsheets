@@ -52,7 +52,7 @@
                     <dt><strong>@property</strong> identifies a property of a class, usually an instance variable to be exposed to the public.<br />(Defined in the @interface section.)</dt>
                     <dd>
                         <pre><code>@property (<span class="blue">attr1</span>, <span class="blue">attr2</span>, ...) <span class="blue">Type</span> <span class="blue">Name</span>;</code></pre>
-                        <strong>Attributes</strong> (<u>underlined</u> = default):
+                        <strong>Attributes of properties</strong> (<u>underlined</u> = default):
                         <ul class="nobullets">
                             <li><u>readwrite</u>, readonly</li>
                             <li><u>atomic</u>, nonatomic</li>
@@ -78,7 +78,7 @@
 
 [<span class="green">window</span> <span class="orange">makeKeyAndVisible</span>];       <span class="comment">// Error: non-existent instance variable "window"</span>
 [<span class="green">_window</span> <span class="orange">makeKeyAndVisible</span>];      <span class="comment">// Ok.</span>
-[<span class="blue">self</span>.<span class="green">window</span> <span class="orange">makeKeyAndVisible</span>];  <span class="comment">// Better. Using the synthesized accessor method</span>
+[<span class="blue">self</span>.<span class="green">window</span> <span class="orange">makeKeyAndVisible</span>];  <span class="comment">// Better. Using the synthesized getter method</span>
 </code>
                      </pre>
             </div>
@@ -151,7 +151,7 @@
             <p>Protocols can also conform to other protocols. Categories can also adopt protocols.</p>
             <div class="row">
                 <div class="col-2">
-                    <em class="code-title">Defining a protocol:</em>
+                    <em class="code-title">Defining a protocol: (.h file)</em>
                     <pre>
 <code>@protocol <span class="blue">ProtocolName</span> &lt;<span class="blue">"Super-protocols"...</span>&gt;
 <span class="hide">  // </span><span class="green block">Methods</span>
@@ -173,6 +173,84 @@
                     </pre>
                 </div>
             </div>
+
+            <h3>Delegation</h3>
+            <p>In iOS apps, protocols are used for the <em>delegation</em> design pattern. Classes can delegate others to implement certain functionality.</p>
+            <p>For example, a user of the CoreLocation class can register itself as the delegate of CLLocationManager. When the instance of CLLocationManager has a location update, its <code>locationManager:didUpdateToLocation:fromLocation</code> method is triggered. Because that's one of the methods in the protocol, we (the user of CLLocationManager) can implement the method ourselves and use the location data however we like.</p>
+            <div class="row">
+                <div class="col-3">
+                    <em class="code-title">CLLocationManagerDelegate.h</em>
+                    <pre>
+<code><span class="red">@protocol</span> <span class="blue">CLLocationManagerDelegate</span>
+
+<span class="comment">// methods...</span>
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation;
+
+<span class="red">@end</span>
+</code>
+                    </pre>
+                </div>
+                <div class="col-3">
+                    <em class="code-title">CLLocationManager.h</em>
+                    <pre>
+<code><span class="comment">// forward declaration of the delegate protocol</span>
+<span class="red">@protocol</span> <span class="blue">CLLocationManagerDelegate</span>;
+
+
+<span class="red">@interface</span> <span class="blue">CLLocationManager</span>
+
+<span class="red">@property</span>(assign, nonatomic) id&lt;<span class="blue">CLLocationManagerDelegate</span>&gt; delegate;
+
+<span class="comment">// methods and stuff...</span>
+
+<span class="red">@end</span>
+</code>
+                    </pre>
+                </div>
+                <div class="col-3">
+                    <em class="code-title">User of CoreLocation</em>
+                    <pre>
+<code><strong class="comment">// User.h -------------------------------</strong>
+#import "<span class="blue">CLLocationManager</span>.h"
+
+<span class="red">@interface</span> <span class="blue">User</span> &lt;<span class="blue">CLLocationManagerDelegate</span>&gt; {
+    CLLocationManager *locationManager;
+}
+
+<span class="hide">  // </span><span class="comment">...</span>
+
+<span class="red">@end</span>
+
+
+<strong class="comment">// User.m -------------------------------</strong>
+<span class="red">@implementation</span> <span class="blue">User</span>
+
+- (void)init {
+    <span class="comment">// Create location manager object</span>
+    locationManager = [[CLLocationManager alloc] init];
+
+    <span class="comment">// Assign User to be the delegate of locationManager</span>
+    [locationManager setDelegate:self];
+
+    [locationManager startUpdatingLocation];
+}
+
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+    <span class="comment">// implement because we assigned ourselves
+    // to be the delegate of CLLocationManager</span>
+}
+
+<span class="red">@end</span>
+</code>
+                    </pre>
+                </div>
+
         </section>
 
         <section>
@@ -273,7 +351,7 @@ printFoo(); <span class="comment">// prints 15</span>
             <h3>ARC</h3>
             <ul>
                 <li>In an ARC project, the the compiler automatically takes care of calling <code>retain</code>, <code>release</code>, and <code>autorelease</code>.</li>
-                <li>Instance variables don't need to be released in the dealloc method &mdash; in fact, in ARC projects, dealloc is usually unnecessary.</li>
+                <li>Instance variables don't need to be released in the dealloc method &mdash; in fact in ARC projects, dealloc is usually unnecessary.</li>
             </ul>
         </section>
     </body>
