@@ -261,7 +261,7 @@ dd pre {
 
 strong {
   font-weight: bold;
-  color: #111;
+  color: $darkBlue;
 }
 
 em {
@@ -286,10 +286,24 @@ li code {
   padding: 0 4px;
 }
 
-p+p {
-  margin-top: 15px;
+p {
+  p+& { margin-top: 15px; }
+  h3+& { margin-top: 5px; }
 }
 
 p+ul {
-  margin-top: 15px;
+  margin-top: 5px;
+}
+
+p var,
+ul var,
+dl var {
+  font-family: Menlo;
+  font-size: 13px;
+  font-weight: bold;
+  color: $darkBlue;
+}
+
+.deprecated {
+  display: none;
 }
