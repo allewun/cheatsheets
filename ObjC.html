@@ -47,9 +47,11 @@
 
         <section>
             <h2>Properties / Synthesis</h2>
+            <p>Properties provide an interface for other classes to access a class' instance variables. Each <var>@property</var> statement is typically paired with a corresponding <var>@synthesize</var> statement, which automatically creates the accessor methods for the instance variable.</p>
+            <p>With the latest version of Objective-C and Xcode, instance variables are no longer needed in the .h file &mdash; <var>@properties</var> alone are sufficient.  Further yet, in Xcode 4.4+, <var>@synthesize</var> isn't even necessary, since there's a one-to-one correspondence between properties and their synthesizes.</p>
             <div class="row">
                 <dl>
-                    <dt><strong>@property</strong> identifies a property of a class, usually an instance variable to be exposed to the public.<br />(Defined in the @interface section.)</dt>
+                    <dt><var>@property</var> identifies a property of a class, usually an instance variable to be exposed to the public.<br />(Defined in the @interface section.)</dt>
                     <dd>
                         <pre><code>@property (<span class="blue">attr1</span>, <span class="blue">attr2</span>, ...) <span class="blue">Type</span> <span class="blue">Name</span>;</code></pre>
                         <strong>Attributes of properties</strong> (<u>underlined</u> = default):
@@ -61,7 +63,7 @@
                             <li>getter=, setter=</li>
                         </ul>
                     </dd>
-                    <dt><strong>@synthesize</strong> tells the compiler to automatically create the accessor methods for a given @property.<br />(Defined in the @implementation section.)</dt>
+                    <dt><var>@synthesize</var> tells the compiler to automatically create the accessor methods for a given @property.<br />(Defined in the @implementation section.)</dt>
                     <dd>
                         <pre><code>@synthesize <span class="blue">Property</span> = _<span class="blue">Ivar</span>;</code></pre>
                     </dd>
@@ -101,7 +103,7 @@
                     </pre>
                 </div>
                 <div class="col-2">
-                    <em class="code-title">.m file</em>
+                    <em class="code-title">.m file (ClassName+CategoryName.m)</em>
                     <pre>
 <code>@implementation <span class="blue">ClassName</span> (<span class="blue">CategoryName</span>)
 <span class="hide">  // </span><span class="green block">Method Implementations</span>
