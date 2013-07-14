@@ -342,16 +342,24 @@ printFoo(); <span class="comment">// prints 15</span>
             <h2>Memory Management</h2>
             <h3>Non-ARC</h3>
             <ul>
-                <li>Objects created using <code>alloc</code>, <code>copy</code>, <code>mutableCopy</code>, or <code>new</code> need to be released manually.</li>
-                <li><code>autorelease</code> doesn't affect retain counts.</li>
-                <li>When a object's reference count reaches 0, the system sends it a <code>dealloc</code> message.</li>
-                <li>Do not explicitly release an <code>autorelease</code>'d object.</li>
+                <li>Objects specified with <var>retain</var> or created using <var>alloc</var>, <var>copy</var>, <var>mutableCopy</var>, or <var>new</var> need to be released manually.</li>
+                <li>When a object's reference count reaches 0, the system sends it a <var>dealloc</var> message.</li>
+                <li><var>autorelease</var>:
+                    <ul>
+                        <li>Mainly used when returning an object from a method.</li>
+                        <li>Can assume convenience methods (<var>stringWithFormat</var>, etc...) return autoreleased methods.</li>
+                        <li>Do not explicitly release an autoreleased object.</li>
+                        <li><var>autorelease</var> doesn't affect immediate retain counts.</li>
+                    </ul>
+                </li>
+                <li><var>[Object new]</var> is an alias for <var>[Object alloc] init]</var></li>
             </ul>
 
             <h3>ARC</h3>
+            <p>Available starting with Xcode 4.2 and iOS 4.0. iOS 5.0 is required for <var>weak</var> reference support.</p>
             <ul>
-                <li>In an ARC project, the the compiler automatically takes care of calling <code>retain</code>, <code>release</code>, and <code>autorelease</code>.</li>
-                <li>Instance variables don't need to be released in the dealloc method &mdash; in fact in ARC projects, dealloc is usually unnecessary.</li>
+                <li>In an ARC project, the the compiler automatically takes care of calling <var>retain</var>, <var>release</var>, and <var>autorelease</var>.</li>
+                <li>Instance variables don't need to be released in the dealloc method &mdash; in fact in ARC projects, <var>dealloc</var> is usually unnecessary.</li>
             </ul>
         </section>
     </body>
